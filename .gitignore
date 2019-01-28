@@ -1,0 +1,12 @@
+node_modules
+.idea
+
+.idea/vcs.xml
+**/**/*.js.map
+**/**/*.js
+**/**/*.d.ts
+.vscode/
+!gulpfile.js
+dist/*
+.nyc_output/*
+coverage/*
