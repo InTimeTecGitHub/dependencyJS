@@ -52,15 +52,15 @@ import {Sample} from "./Sample";
 
 //register class object
 let sample: BaseSample = new Sample();
-
 ComponentRegistry.getInstance().register<BaseSample>(BaseSample, sample);
 ```
 
 #Resolve class object to use it anywhere in code
+```ts
+let sample: BaseSample= ComponentRegistry.getInstance().resolve<BaseSample>(BaseSample);
+```
 
-let sample: BaseSample= ComponentRegistry.getInstance().resolve<BaseSample>(BaseSample);https://github.com/ManishKumawat
-
-### Core Contributor(s)
+### Core Contributors
 
 Feel free to reach out to any of the core contributors with your questions or
 concerns. We will do our best to respond in a timely manner.
