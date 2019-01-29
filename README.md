@@ -1,14 +1,7 @@
-# dependencyJS
-Dependency injection framework for Typescript
+# DependencyJS
+Dependency injection framework for Typescript and Javascript
 
-How it works
-
-
-<h1 align=center>
-  Dependencyjs
-</h1>
-## What is Chai?
-
+## What is dependencyjs?
 Dependencyjs is an dependency framework for javascript and typescript applications. This framework will help building independent components in application. So it is going to be useful if you want to achieve a well maintainable and testable application
 
 ## Installation
@@ -57,7 +50,7 @@ import {ComponentRegistry} from "dependencyjs";
 import {BaseSample} from "./BaseSample";
 import {Sample} from "./Sample";
 
-#register class object
+//register class object
 let sample: BaseSample = new Sample();
 
 ComponentRegistry.getInstance().register<BaseSample>(BaseSample, sample);
@@ -72,4 +65,5 @@ let sample: BaseSample= ComponentRegistry.getInstance().resolve<BaseSample>(Base
 Feel free to reach out to any of the core contributors with your questions or
 concerns. We will do our best to respond in a timely manner.
 
+[![IntimeTec](https://github.com/InTimeTecGitHub/)](https://github.com/InTimeTecGitHub/)
 [![Manish Kumawat](https://github.com/ManishKumawat)](https://github.com/ManishKumawat)
