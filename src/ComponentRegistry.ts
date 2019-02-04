@@ -2,7 +2,7 @@ export class ComponentRegistry {
     private components: Map<string, Map<string, any>>;
 
     constructor() {
-        this.components = new Map<string, any>();
+        this.components = new Map<string, Map<string, any>>();
     }
 
     private static instance: ComponentRegistry;
@@ -62,7 +62,7 @@ export class ComponentRegistry {
 
     //This method will clean container. all the registered dependencies will be cleaned.
     public cleanContainer(): boolean {
-        this.components = new Map<string, any>();
+        this.components = new Map<string, Map<string, any>>();
         return true;
     }
 
