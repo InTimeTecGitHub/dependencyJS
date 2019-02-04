@@ -60,6 +60,46 @@ registry.register<BaseSample>(BaseSample, sample);
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
 ```
 
+## Using resolver
+
+Dependencies can be registered with extra parameter so that we can have multiple implementation of base class registered
+in registry.
+
+lets extend same Base sample in another class and register both of them in registry
+
+
+```ts
+export class SampleTypeSecond extends BaseSample{
+    ShowSample(name: string): string{
+        return "Test Name is :"+ name;
+    }
+}
+```
+
+Now register both of them in registry
+
+
+```ts
+import {ComponentRegistry, registry} from "dependencyjs";
+import {BaseSample} from "./BaseSample";
+import {Sample} from "./Sample";
+import {Sample} from "./SampleTypeSecond";
+
+//register class object
+let sample: BaseSample = new Sample();
+let secondSample: BaseSample = new SampleTypeSecond();
+
+registry.register<BaseSample>(BaseSample, sample, "sample");
+registry.register<BaseSample>(BaseSample, secondSample, "secondSample");
+```
+
+
+#Resolve class object with resolver in your code
+```ts
+let sample: BaseSample= registry.resolve<BaseSample>(BaseSample, "sample");
+let sampleSecond: BaseSample= registry.resolve<BaseSample>(BaseSample, "secondSample");
+```
+
 ### Core Contributors
 
 Feel free to reach out to any of the core contributors with your questions or
