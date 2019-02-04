@@ -17,7 +17,9 @@ export class ComponentRegistry {
 
     hasComponent(type: any, resolver?: string) {
         let key = new Unit(type, resolver);
-        return !this.components.get(key.toString());
+        let typeMap = this.components.get(key.type);
+        if (!typeMap) return false;
+        return !typeMap.get(key.resolver);
     }
     //This method will register dependencies on base class.
     //Multiple classes can be register with one base class using resolver parameter
