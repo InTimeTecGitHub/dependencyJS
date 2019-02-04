@@ -5,6 +5,7 @@ import sinon = require("sinon");
 import chaiExclude = require("chai-exclude");
 import {expect, use} from "chai";
 import {ComponentRegistry} from "../../src/ComponentRegistry";
+import {registry} from "./../../index";
 import {BaseTestUnit} from "./fixtures/BaseTestUnit";
 import {TestUnitSample} from "./fixtures/TestUnitSample";
 import Test = Mocha.Test;
@@ -17,7 +18,7 @@ let container: ComponentRegistry;
 
 describe("@ComponentRegistry", async () => {
     before("@ComponentRegistry - container setup", function (done) {
-        container = ComponentRegistry.getInstance();
+        container = registry;
         done();
     });
 

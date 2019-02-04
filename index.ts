@@ -1,3 +1,3 @@
-
 import {ComponentRegistry} from "./src/ComponentRegistry";
-export {ComponentRegistry};
+var registry: ComponentRegistry = ComponentRegistry.getInstance();
+export {ComponentRegistry, registry};

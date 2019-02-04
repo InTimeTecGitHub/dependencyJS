@@ -46,18 +46,18 @@ Now register class with its concrete implementation
 
 
 ```ts
-import {ComponentRegistry} from "dependencyjs";
+import {ComponentRegistry, registry} from "dependencyjs";
 import {BaseSample} from "./BaseSample";
 import {Sample} from "./Sample";
 
 //register class object
 let sample: BaseSample = new Sample();
-ComponentRegistry.getInstance().register<BaseSample>(BaseSample, sample);
+registry.register<BaseSample>(BaseSample, sample);
 ```
 
 #Resolve class object to use it anywhere in code
 ```ts
-let sample: BaseSample= ComponentRegistry.getInstance().resolve<BaseSample>(BaseSample);
+let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
 ```
 
 ### Core Contributors
