@@ -11,6 +11,7 @@ import {TestUnitSample} from "./fixtures/TestUnitSample";
 import Test = Mocha.Test;
 import Base = Mocha.reporters.Base;
 import {TestUnitSecondSample} from "./fixtures/TestUnitSecondSample";
+import {BaseComponentTest} from "../Configuration/fixtures/BaseComponentTest";
 
 use(chaiExclude);
 
@@ -123,6 +124,21 @@ describe("@ComponentRegistry", async () => {
 
         //Act
         let actual = (resolvedUnitSample1.checkMe("something") && resolvedUnitSample1.checkMe("something")) ? true : false;
+        //Assert
+        expect(actual).to.be.equals(expected);
+    });
+
+    it("@ConfigurationReader - check configuration reader is working as expected", async function () {
+        //Arrange
+        let expected: string = "Test sample";
+
+        //Act
+        registry.loadConfiguration("/test/Configuration/fixtures/xmls/");
+
+        let testComponent: BaseComponentTest = container.resolve<BaseComponentTest>(BaseComponentTest, "test");
+
+        let actual: string = testComponent.Show("sample");
+
         //Assert
         expect(actual).to.be.equals(expected);
     });

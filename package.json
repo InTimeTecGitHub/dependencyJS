@@ -62,7 +62,9 @@
     "typescript": "^3.1.6",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "xml2json": "^0.11.2",
+    "xmljson": "^0.2.0"
   },
   "devDependencies": {
     "@types/angular": "^1.6.50",

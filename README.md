@@ -14,7 +14,7 @@ Dependencyjs is an dependency framework for javascript and typescript applicatio
 
 ### Browsers
 
-You can also use it within the browser; install via npm and use the `chai.js` file found within the download. For example:
+You can also use it within the browser; install via npm and use the `ComponentRegistry.js` file found within the download. For example:
 
 ```html
 <script src="./node_modules/dependencyjs/src/ComponentRegistry.js"></script>
@@ -55,7 +55,7 @@ let sample: BaseSample = new Sample();
 registry.register<BaseSample>(BaseSample, sample);
 ```
 
-#Resolve class object to use it anywhere in code
+Resolve class object to use it anywhere in code
 ```ts
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
 ```
@@ -94,7 +94,7 @@ registry.register<BaseSample>(BaseSample, secondSample, "secondSample");
 ```
 
 
-#Resolve class object with resolver in your code
+Resolve class object with resolver in your code
 ```ts
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample, "sample");
 let sampleSecond: BaseSample= registry.resolve<BaseSample>(BaseSample, "secondSample");
