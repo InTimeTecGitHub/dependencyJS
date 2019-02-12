@@ -1,5 +1,4 @@
 import {Config} from "./models/Config";
-var to_json = require("xmljson").to_json;
 var parser = require("xml2json");
 var path = require("path");
 var fs = require("fs");
