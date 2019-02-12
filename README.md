@@ -122,20 +122,20 @@ dependencyjs provide a functionality where you can load classes dyanamically fro
 
 Details of each field
 
-    1. **Container**: Container can have multiple class registration.
-    2. **Register**: In register, you can mention detail about base class and child class to register the dependency.
-        a. **type**: This will contain name of the exported base class. In our example about, it could be "BaseSample"
-        b. **mapTo**: This will contain name of the exported concrete implementation class. In our example, it could be "Sample".
-        c. **typeProperty**: This node will container information about base class.
-            i. **sourceType**: You can use a base class from a node package or it could exist in your local system. So there are two possible
+    1. Container: Container can have multiple class registration.
+    2. Register: In register, you can mention detail about base class and child class to register the dependency.
+      a. type: This will contain name of the exported base class. In our example about, it could be "BaseSample"
+      b. mapTo: This will contain name of the exported concrete implementation class. In our example, it could be "Sample".
+      c. typeProperty: This node will container information about base class.
+        i. sourceType: You can use a base class from a node package or it could exist in your local system. So there are two possible
                            values -> "fs" or "package"
-            ii. **sourceInfo**: If sourceType is package then this field will contain name of the package. If source type is "fs" then
+        ii. sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
                             this field will contain localtion of your file which contains base class. For example, location of Sample
                             class is "/BaseSample".
-        d. **mapProperty**: This node will container information about concrete class.
-            i. **sourceType**: You can use a concrete class from a node package or it could exist in your local system. So there are two possible
+      d. mapProperty: This node will container information about concrete class.
+        i. sourceType: You can use a concrete class from a node package or it could exist in your local system. So there are two possible
                            values -> "fs" or "package"
-            ii. **sourceInfo**: If sourceType is package then this field will contain name of the package. If source type is "fs" then
+        ii. sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
                             this field will contain localtion of your file which contains concrete class. For example, location of Sample
                             class is "/Sample".
 
