@@ -1,3 +1,4 @@
 export class Config {
-    configFolder: string;
+    configXmlFolder: string;
+    appDirectory: string;
 }

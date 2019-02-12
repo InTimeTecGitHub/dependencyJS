@@ -64,9 +64,7 @@ export class ComponentRegistry {
     }
 
     //this method will register dependencies from xml configuration
-    public loadConfiguration(folderPath: string): boolean {
-        let config: Config = new Config();
-        config.configFolder = folderPath;
+    public loadConfiguration(config: Config): boolean {
         return ConfigurationReader.getInstance().loadConfiguration(config);
     }
 

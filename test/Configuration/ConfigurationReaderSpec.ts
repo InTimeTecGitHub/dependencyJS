@@ -1,5 +1,6 @@
 // noinspection ES6UnusedImports
 import mocha = require("mocha");
+var path = require("path");
 
 import sinon = require("sinon");
 import chaiExclude = require("chai-exclude");
@@ -24,7 +25,8 @@ describe("@ConfigurationReader", async () => {
         container = registry;
         configurationReader = ConfigurationReader.getInstance();
         config = new Config();
-        config.configFolder = "/test/Configuration/fixtures/xmls/";
+        config.configXmlFolder = "/test/Configuration/fixtures/xmls/";
+        config.appDirectory = path.join(__dirname + "/../../");
         done();
     });
 

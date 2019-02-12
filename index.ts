@@ -1,3 +1,4 @@
 import {ComponentRegistry} from "./src/ComponentRegistry";
 var registry: ComponentRegistry = ComponentRegistry.getInstance();
-export {ComponentRegistry, registry};
+import {Config} from "./src/models/Config";
+export {ComponentRegistry, registry, Config};

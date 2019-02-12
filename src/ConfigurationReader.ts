@@ -26,7 +26,7 @@ export class ConfigurationReader {
         configSections.registrationSections = new Array<RegisterSection>();
 
         //read all component files
-        let folderPath: string = path.join(path.join(__dirname + "/../"), config.configFolder);
+        let folderPath: string = path.join(config.appDirectory, config.configXmlFolder);
         let fileNames: Array<string> = fs.readdirSync(folderPath);
         fileNames.forEach(fileName => {
             try {
@@ -49,12 +49,12 @@ export class ConfigurationReader {
             }
         });
 
-        this.registerDependencies(configSections);
+        this.registerDependencies(configSections, config);
 
         return true;
     }
 
-    private registerDependencies(configuration: ConfigurationSection) {
+    private registerDependencies(configuration: ConfigurationSection, folderConfig:Config) {
         if (configuration != null) {
             configuration.registrationSections.forEach((registrationSection: RegisterSection) => {
                 try {
@@ -64,14 +64,14 @@ export class ConfigurationReader {
                         base = require(registrationSection.typeProperty.sourceInfo)[registrationSection.type];
                     }
                     else {
-                        base = require(path.join(__dirname + "/../" + registrationSection.typeProperty.sourceInfo))[registrationSection.type];
+                        base = require(path.join(folderConfig.appDirectory + registrationSection.typeProperty.sourceInfo))[registrationSection.type];
                     }
 
                     if (registrationSection.mapProperty.sourceType == SourceType.package) {
                         map = require(registrationSection.mapProperty.sourceInfo)[registrationSection.mapTo];
                     }
                     else {
-                        map = require(path.join(__dirname + "/../" + registrationSection.mapProperty.sourceInfo))[registrationSection.mapTo];
+                        map = require(path.join(folderConfig.appDirectory + registrationSection.mapProperty.sourceInfo))[registrationSection.mapTo];
                     }
 
                     ComponentRegistry.getInstance().register(base, new map(), registrationSection.resolver);
