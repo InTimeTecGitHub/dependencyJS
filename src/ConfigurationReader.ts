@@ -28,7 +28,18 @@ export class ConfigurationReader {
         //read all component files
         let folderPath: string = path.join(config.appDirectory, config.configXmlFolder);
         let fileNames: Array<string> = fs.readdirSync(folderPath);
-        fileNames.forEach(fileName => {
+        configSections = this.readXmlFilesFromDisk(fileNames, folderPath);
+
+        this.registerDependencies(configSections, config);
+
+        return true;
+    }
+
+    private readXmlFilesFromDisk(files: Array<string>, folderPath: string): ConfigurationSection {
+        let configSections: ConfigurationSection = new ConfigurationSection();
+        configSections.registrationSections = new Array<RegisterSection>();
+
+        files.forEach(fileName => {
             try {
                 let section: any = fs.readFileSync(folderPath + "/" + fileName);
                 var registrationData = JSON.parse(parser.toJson(section).toString())["container"]["register"];
@@ -45,13 +56,11 @@ export class ConfigurationReader {
                 }
             }
             catch (ex) {
-               throw new Error("There is some issues with configuration file :" + fileName + ", ExceptionDetail: " + ex);
+                throw new Error("There is some issues with configuration file :" + fileName + ", ExceptionDetail: " + ex);
             }
         });
 
-        this.registerDependencies(configSections, config);
-
-        return true;
+        return configSections;
     }
 
     private registerDependencies(configuration: ConfigurationSection, folderConfig: Config) {
