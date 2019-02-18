@@ -1,8 +1,7 @@
-import {MapProperty} from "./MapProperty";
-import {TypeProperty} from "./TypeProperty";
+import {ImplementationSection} from "./ImplementationSection";
 export class RegisterSection {
-    mapProperty: MapProperty;
-    typeProperty: TypeProperty;
+    mapProperty: ImplementationSection;
+    typeProperty: ImplementationSection;
     mapTo: string;
     type: string;
     resolver: string;

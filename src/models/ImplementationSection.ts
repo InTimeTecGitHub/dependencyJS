@@ -1,5 +1,5 @@
 import {SourceType} from "./SourceType";
-export class TypeProperty {
+export class ImplementationSection {
     sourceType: SourceType;
     sourceInfo: string;
 }

@@ -9,9 +9,6 @@ let tsify = require("tsify");
 let babelify = require("babelify");
 let uglify = require("gulp-uglifyes");
 let buffer = require("vinyl-buffer");
-let paths = {
-  pages: ['src/views/*.html']
-};
 let compile = [
   'index.ts',
   './src/**/*.ts',
@@ -20,10 +17,6 @@ let compile = [
   '!./src/**/trash/**'
 ];
 
-gulp.task("copy-html", function () {
-  return gulp.src(paths.pages)
-    .pipe(gulp.dest("dist"));
-});
 gulp.task("tsc", function () {
   return tsProject.src()
     .pipe(tsProject())

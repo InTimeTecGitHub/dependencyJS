@@ -6,6 +6,7 @@ import {ComponentRegistry} from "./ComponentRegistry";
 import {ConfigurationSection} from "./models/ConfigurationSection";
 import {RegisterSection} from "./models/RegisterSection";
 import {SourceType} from "./models/SourceType";
+import {ImplementationSection} from "./models/ImplementationSection";
 
 export class ConfigurationReader {
 
@@ -44,7 +45,7 @@ export class ConfigurationReader {
                 }
             }
             catch (ex) {
-                console.log("There is some issues with configuration file :" + fileName);
+               throw new Error("There is some issues with configuration file :" + fileName + ", ExceptionDetail: " + ex);
             }
         });
 
@@ -53,32 +54,30 @@ export class ConfigurationReader {
         return true;
     }
 
-    private registerDependencies(configuration: ConfigurationSection, folderConfig:Config) {
+    private registerDependencies(configuration: ConfigurationSection, folderConfig: Config) {
         if (configuration != null) {
             configuration.registrationSections.forEach((registrationSection: RegisterSection) => {
                 try {
-                    let base: any;
-                    let map: any;
-                    if (registrationSection.typeProperty.sourceType === SourceType.package) {
-                        base = require(registrationSection.typeProperty.sourceInfo)[registrationSection.type];
-                    }
-                    else {
-                        base = require(path.join(folderConfig.appDirectory + registrationSection.typeProperty.sourceInfo))[registrationSection.type];
-                    }
-
-                    if (registrationSection.mapProperty.sourceType == SourceType.package) {
-                        map = require(registrationSection.mapProperty.sourceInfo)[registrationSection.mapTo];
-                    }
-                    else {
-                        map = require(path.join(folderConfig.appDirectory + registrationSection.mapProperty.sourceInfo))[registrationSection.mapTo];
-                    }
+                    let base: any = this.getImplementationDetailObject(registrationSection.typeProperty, registrationSection.type, folderConfig);
+                    let map: any = this.getImplementationDetailObject(registrationSection.mapProperty, registrationSection.mapTo, folderConfig);
 
                     ComponentRegistry.getInstance().register(base, new map(), registrationSection.resolver);
                 }
                 catch (ex) {
-                    console.log(registrationSection.mapTo + ": object cant be registered due to some issues. Exception: " + ex);
+                    throw new Error(registrationSection.mapTo + ": object cant be registered due to some issues. Exception: " + ex);
                 }
             });
         }
+    }
+
+    private getImplementationDetailObject(implProperty: ImplementationSection, mapper: string, folderConfig: Config) {
+        let mapperObject: any;
+        if (implProperty.sourceType == SourceType.package) {
+            mapperObject = require(implProperty.sourceInfo)[mapper];
+        }
+        else {
+            mapperObject = require(path.join(folderConfig.appDirectory + implProperty.sourceInfo))[mapper];
+        }
+        return mapperObject;
     }
 }
