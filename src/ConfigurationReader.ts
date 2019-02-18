@@ -20,21 +20,24 @@ export class ConfigurationReader {
         return ConfigurationReader.instance;
     }
 
+    //load dependencies in container
     public loadConfiguration(config: Config): boolean {
-
-        let configSections: ConfigurationSection = new ConfigurationSection();
-        configSections.registrationSections = new Array<RegisterSection>();
 
         //read all component files
         let folderPath: string = path.join(config.appDirectory, config.configXmlFolder);
+
+        //get list of files from disk
         let fileNames: Array<string> = fs.readdirSync(folderPath);
-        configSections = this.readXmlFilesFromDisk(fileNames, folderPath);
 
+        //get configuration from each file and add in configSections object
+        let configSections: ConfigurationSection = this.readXmlFilesFromDisk(fileNames, folderPath);
+
+        //register all the configuration dependencies
         this.registerDependencies(configSections, config);
-
         return true;
     }
 
+    //read and parse files from disk
     private readXmlFilesFromDisk(files: Array<string>, folderPath: string): ConfigurationSection {
         let configSections: ConfigurationSection = new ConfigurationSection();
         configSections.registrationSections = new Array<RegisterSection>();
@@ -63,6 +66,7 @@ export class ConfigurationReader {
         return configSections;
     }
 
+    //register configuration in container object
     private registerDependencies(configuration: ConfigurationSection, folderConfig: Config) {
         if (configuration != null) {
             configuration.registrationSections.forEach((registrationSection: RegisterSection) => {
