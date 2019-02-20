@@ -1,15 +1,17 @@
 // noinspection ES6UnusedImports
 import mocha = require("mocha");
-
-import sinon = require("sinon");
+var path = require("path");
 import chaiExclude = require("chai-exclude");
 import {expect, use} from "chai";
 import {ComponentRegistry} from "../../src/ComponentRegistry";
+import {registry} from "./../../index";
 import {BaseTestUnit} from "./fixtures/BaseTestUnit";
 import {TestUnitSample} from "./fixtures/TestUnitSample";
 import Test = Mocha.Test;
 import Base = Mocha.reporters.Base;
 import {TestUnitSecondSample} from "./fixtures/TestUnitSecondSample";
+import {BaseComponentTest} from "../Configuration/fixtures/BaseComponentTest";
+import {Config} from "../../src/models/Config";
 
 use(chaiExclude);
 
@@ -17,7 +19,7 @@ let container: ComponentRegistry;
 
 describe("@ComponentRegistry", async () => {
     before("@ComponentRegistry - container setup", function (done) {
-        container = ComponentRegistry.getInstance();
+        container = registry;
         done();
     });
 
@@ -122,6 +124,24 @@ describe("@ComponentRegistry", async () => {
 
         //Act
         let actual = (resolvedUnitSample1.checkMe("something") && resolvedUnitSample1.checkMe("something")) ? true : false;
+        //Assert
+        expect(actual).to.be.equals(expected);
+    });
+
+    it("@ConfigurationReader - check configuration reader is working as expected", async function () {
+        //Arrange
+        let expected: string = "Test sample";
+        let config: Config = new Config();
+        config.configFolder = "/test/Configuration/fixtures/configFiles/";
+        config.appDirectory = path.join(__dirname + "/../../");
+
+        //Act
+        registry.loadConfiguration(config);
+
+        let testComponent: BaseComponentTest = container.resolve<BaseComponentTest>(BaseComponentTest, "test");
+
+        let actual: string = testComponent.Show("sample");
+
         //Assert
         expect(actual).to.be.equals(expected);
     });
