@@ -1,0 +1,19 @@
+{
+  "container": {
+    "register": [
+      {
+        "base": {
+          "typeName": "BaseComponentTest",
+          "sourceType": "fs",
+          "sourceInfo": "/test/Configuration/fixtures/BaseComponentTest"
+        },
+        "resolver": "test",
+        "map": {
+          "typeName": "ComponentTest",
+          "sourceType": "fs",
+          "sourceInfo": "/test/Configuration/fixtures/ComponentTest"
+        }
+      }
+    ]
+  }
+}
