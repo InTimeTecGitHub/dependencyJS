@@ -237,6 +237,6 @@ Feel free to reach out to any of the core contributors with your questions or
 concerns. We will do our best to respond in a timely manner.
 
 [![IntimeTec](https://github.com/InTimeTecGitHub/)](https://github.com/InTimeTecGitHub/)
-[![Manish Kumawat](https://avatars0.githubusercontent.com/u/19161678?s=400&v=4)](https://github.com/ManishKumawat)
+[![Manish Kumawat](https://github.com/ManishKumawat)](https://github.com/ManishKumawat)
 [![Akhil S](https://github.com/sasidakh)](https://github.com/sasidakh)
 
