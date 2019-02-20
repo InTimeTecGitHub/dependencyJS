@@ -48,6 +48,11 @@
     "nyc": "^13.1.0",
     "ts-node": "^7.0.1"
   },
+  "contributors": [
+    "InTimeTec vision soft pvt ltd - https://intimetec.com/",
+    "Manish Kumawat - https://github.com/ManishKumawat",
+    "Akhil S - https://github.com/sasidakh"
+  ],
   "keywords": [
     "dependency resolver",
     "IOC",
