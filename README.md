@@ -103,84 +103,131 @@ let sampleSecond: BaseSample= registry.resolve<BaseSample>(BaseSample, "secondSa
 
 ## Loading dependencies from configuration
 
-dependencyjs provide a functionality where you can load classes dyanamically from xml configuration.
+dependencyjs provide a functionality where you can load classes dynamically from json configurations.
 
-### How to configure xml
+### How to configure json
 
-```xml
-<container>
-    <register type="<BaseClassType>" mapTo="<Concrete implementation class name>" resolver="<any string to identify class>">
-        <typeProperty sourceType="<fs or package>" sourceInfo="<location of file or package name>"></typeProperty>
-        <mapProperty sourceType="<fs or package>" sourceInfo="<location of file or package name>"></mapProperty>
-    </register>
-    <register type="<BaseClassType>" mapTo="<Concrete implementation class name>" resolver="<any string to identify class>">
-         <typeProperty sourceType="<fs or package>" sourceInfo="<location of file or package name>"></typeProperty>
-         <mapProperty sourceType="<fs or package>" sourceInfo="<location of file or package name>"></mapProperty>
-    </register>
-</container>
+```json
+
+{
+  "container": {
+    "register": [
+      {
+        "base": {
+          "typeName": "<BaseClassType>",
+          "sourceType": "<fs or package>",
+          "sourceInfo": "<location of file or package name>"
+        },
+        "resolver": "<any string to identify class>",
+        "map": {
+          "typeName": "<Concrete implementation class name>",
+          "sourceType": "<fs or package>",
+          "sourceInfo": "<location of file or package name>"
+        }
+      },
+	  {
+        "base": {
+          "typeName": "<BaseClassType>",
+          "sourceType": "<fs or package>",
+          "sourceInfo": "<location of file or package name>"
+        },
+        "resolver": "<any string to identify class>",
+        "map": {
+          "typeName": "<Concrete implementation class name>",
+          "sourceType": "<fs or package>",
+          "sourceInfo": "<location of file or package name>"
+        }
+      }
+    ]
+  }
+}
 ```
 
 Details of each field
 
     1. Container: Container can have multiple class registration.
     2. Register: In register, you can mention detail about base class and child class to register the dependency.
-      a. type: This will contain name of the exported base class. In our example about, it could be "BaseSample"
-      b. mapTo: This will contain name of the exported concrete implementation class. In our example, it could be "Sample".
-      c. typeProperty: This node will container information about base class.
-        i. sourceType: You can use a base class from a node package or it could exist in your local system. So there are two possible
-                           values -> "fs" or "package"
-        ii. sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
-                            this field will contain localtion of your file which contains base class. For example, location of Sample
-                            class is "/BaseSample".
-      d. mapProperty: This node will container information about concrete class.
-        i. sourceType: You can use a concrete class from a node package or it could exist in your local system. So there are two possible
-                           values -> "fs" or "package"
-        ii. sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
-                            this field will contain localtion of your file which contains concrete class. For example, location of Sample
-                            class is "/Sample".
+      a. base:
+          typeName  : This will contain name of the exported base class. In our example about, it could be "BaseSample"
+          sourceType: You can use a base class from a node package or it could exist in your local system. So there are two possible
+                      values -> "fs" or "package"
+          sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
+                      this field will contain localtion of your file which contains base class. For example, location of Sample
+                      class is "/BaseSample".
+      b. map
+          typeName  : This will contain name of the exported concrete implementation class. In our example, it could be "Sample".
+          sourceType: You can use a concrete class from a node package or it could exist in your local system. So there are two possible
+                      values -> "fs" or "package"
+          sourceInfo: If sourceType is package then this field will contain name of the package. If source type is "fs" then
+                      this field will contain localtion of your file which contains concrete class. For example, location of Sample
+                      class is "/Sample".
+      c. resolver   : If a base class have multiple implementation and you want to get any kind of implementation at run time, you can use
+                      resolver. This will help you to identify classes uniquely.
 
-Here is example of one xml
+Here is example of one json configuration
 
-```xml
-<container>
-    <register type="BaseSample" mapTo="Sample" resolver="Sample1">
-        <typeProperty sourceType="fs" sourceInfo="/BaseSample"></typeProperty>
-        <mapProperty sourceType="fs" sourceInfo="/Sample"></mapProperty>
-    </register>
-   <register type="BaseSample" mapTo="SampleTypeSecond" resolver="Sample2">
-        <typeProperty sourceType="fs" sourceInfo="/BaseSample"></typeProperty>
-        <mapProperty sourceType="fs" sourceInfo="/SampleTypeSecond"></mapProperty>
-   </register>
-</container>
+```json
+{
+  "container": {
+    "register": [
+      {
+        "base": {
+          "typeName": "BaseSample",
+          "sourceType": "fs",
+          "sourceInfo": "/BaseSample"
+        },
+        "resolver": "Sample1",
+        "map": {
+          "typeName": "Sample",
+          "sourceType": "fs",
+          "sourceInfo": "/Sample"
+        }
+      },
+      {
+        "base": {
+          "typeName": "BaseSample",
+          "sourceType": "fs",
+          "sourceInfo": "/BaseSample"
+         },
+         "resolver": "Sample2",
+         "map": {
+           "typeName": "SampleTypeSecond",
+           "sourceType": "fs",
+           "sourceInfo": "/SampleTypeSecond"
+         }
+       }
+    ]
+  }
+}
 ```
 
-### How to load xml configuration
+### How to load json configuration
 
 In registry, a method has been introduced -
 
 ```ts
-registry.loadConfiguration(config:Config).
+registry.loadConfiguration(config).
  ```
 
-You can use that method to load xml configuration. This method needs Config object as parameter. You can find it
+You can use above method to load json configurations. This method needs Config object as parameter. You can find it
 from dependencyjs. Below are the detail of Config object
 
     - Config: This class basically contains two properties.
         - appDirectory: You need to initialize this property with main execution directory.
-        - configXmlFolder: This is the folder path where you can all xmls to register them in registry.
+        - configFolder: This is the folder path where you keep all json configurations to register them in registry.
 
-Below is the example of reading xml configuration.
+Below is the example of reading json configuration.
 ```ts
 import {registry, Config} from "dependencyjs";
 
 let config: Config = new Config();
 config.appDirectory = "Main application directory"
-config.configXmlFolder = "where you contains all xmls"
+config.configFolder = "where you contains all json"
 
 registry.loadConfiguration(config);
 ```
 
-All your classes will be register which has been mentioned in xmls. If not, you will get appropriate error message.
+All your classes will be register which has been mentioned in json files. If not, you will get appropriate error message.
 
 Now you can use registry as the way explained in usage section
 
@@ -191,3 +238,5 @@ concerns. We will do our best to respond in a timely manner.
 
 [![IntimeTec](https://github.com/InTimeTecGitHub/)](https://github.com/InTimeTecGitHub/)
 [![Manish Kumawat](https://github.com/ManishKumawat)](https://github.com/ManishKumawat)
+[![Akhil S](https://github.com/sasidakh)](https://github.com/sasidakh)
+

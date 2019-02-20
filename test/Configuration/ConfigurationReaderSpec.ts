@@ -2,7 +2,6 @@
 import mocha = require("mocha");
 var path = require("path");
 
-import sinon = require("sinon");
 import chaiExclude = require("chai-exclude");
 import {expect, use} from "chai";
 import {ComponentRegistry} from "../../src/ComponentRegistry";
@@ -25,7 +24,7 @@ describe("@ConfigurationReader", async () => {
         container = registry;
         configurationReader = ConfigurationReader.getInstance();
         config = new Config();
-        config.configXmlFolder = "/test/Configuration/fixtures/xmls/";
+        config.configFolder = "/test/Configuration/fixtures/configFiles/";
         config.appDirectory = path.join(__dirname + "/../../");
         done();
     });

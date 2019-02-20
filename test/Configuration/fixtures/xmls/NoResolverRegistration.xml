@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<container>
-    <register type="BaseComponentTestNR" mapTo="ComponentTestNR">
-        <typeProperty sourceType="fs" sourceInfo="/test/Configuration/fixtures/BaseComponentTestNR"></typeProperty>
-        <mapProperty sourceType="fs" sourceInfo="/test/Configuration/fixtures/ComponentTestNR"></mapProperty>
-    </register>
-</container>

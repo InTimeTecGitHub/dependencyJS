@@ -1,14 +1,8 @@
 let gulp = require("gulp");
 let ts = require("gulp-typescript");
 let tsProject = ts.createProject("tsconfig.json");
-let browserify = require("browserify");
-let source = require('vinyl-source-stream');
 let sourcemaps = require('gulp-sourcemaps');
 let merge = require('merge2');
-let tsify = require("tsify");
-let babelify = require("babelify");
-let uglify = require("gulp-uglifyes");
-let buffer = require("vinyl-buffer");
 let compile = [
   'index.ts',
   './src/**/*.ts',
