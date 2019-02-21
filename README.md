@@ -1,12 +1,10 @@
-# DependencyJS
-Dependency injection framework for Typescript and Javascript
-
 
 <h1 align=center>
     <img alt="dependencyjs" src="https://user-images.githubusercontent.com/19161678/53150421-8f99b700-35d6-11e9-9db4-e7fb4a72c5fe.png">
-  <br>
-  Dependencyjs
 </h1>
+
+# DependencyJS
+Dependency injection framework for Typescript and Javascript
 
 
 ## What is dependencyjs?
