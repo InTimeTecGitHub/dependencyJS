@@ -2,13 +2,11 @@
   "name": "dependencyjs",
   "version": "2.0.3",
   "description": "",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "tslint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "node node_modules/nyc/bin/nyc --reporter=text node_modules/mocha/bin/_mocha --require ts-node/register -u tdd --timeout 999999 --colors ./test/**/*Spec.ts ./test/**/**/*Spec.ts",
-    "coverage": "istanbul cover mocha -- --ui bdd -R spec -t 5000 --compilers js:babel-register",
-    "install": "gulp tsc"
+    "test": "node node_modules/nyc/bin/nyc --reporter=text node_modules/mocha/bin/_mocha --require ts-node/register -u tdd --timeout 999999 --colors ./test/**/*Spec.ts ./test/**/**/*Spec.ts"
   },
   "nyc": {
     "extension": [
@@ -30,23 +28,27 @@
   "author": "Intimetec",
   "license": "ISC",
   "homepage": "https://github.com/ManishKumawat/dependencyJS.git#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.10.1",
+    "browserify": "^16.2.3",
     "chai": "^4.1.2",
     "chai-exclude": "^1.0.9",
+    "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^4.0.2",
+    "gulp-uglifyes": "^0.2.1",
     "istanbul": "^0.4.5",
     "merge2": "^1.2.2",
     "mocha": "^5.2.0",
-    "typescript": "^3.1.6"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "nyc": "^13.1.0",
-    "ts-node": "^7.0.1"
+    "nyc": "^13.3.0",
+    "ts-node": "^7.0.1",
+    "tsify": "^4.0.1",
+    "typescript": "^3.1.6",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "contributors": [
     "InTimeTec vision soft pvt ltd - https://intimetec.com/",

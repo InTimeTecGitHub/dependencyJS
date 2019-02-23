@@ -9,10 +9,9 @@
     "moduleResolution": "node",
     "strictNullChecks": true,
     "noImplicitReturns": true,
+    "outDir": "dist",
     "types": [
-      "node",
-      "mocha",
-      "chai"
+      "node"
     ],
     "typeRoots": [
       "node_modules/@types"
