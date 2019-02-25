@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "strictNullChecks": true,
     "noImplicitReturns": true,
+    "noEmit": true,
     "types": [
       "node",
       "mocha",
