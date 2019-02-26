@@ -66,6 +66,13 @@ Resolve class object to use it anywhere in code
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
 ```
 
+For JavaScript; 
+```js
+DIC.registry.register(BaseSample, sample);
+
+DIC.registry.resolve(BaseSample);
+```
+
 ## Using resolver
 
 Dependencies can be registered with extra parameter so that we can have multiple implementation of base class registered
