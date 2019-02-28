@@ -1,5 +1,11 @@
+
+<h1 align=center>
+    <img alt="dependencyjs" src="https://user-images.githubusercontent.com/19161678/53150421-8f99b700-35d6-11e9-9db4-e7fb4a72c5fe.png">
+</h1>
+
 # DependencyJS
 Dependency injection framework for Typescript and Javascript
+
 
 ## What is dependencyjs?
 Dependencyjs is an dependency framework for javascript and typescript applications. This framework will help building independent components in application. So it is going to be useful if you want to achieve a well maintainable and testable application
@@ -58,6 +64,13 @@ registry.register<BaseSample>(BaseSample, sample);
 Resolve class object to use it anywhere in code
 ```ts
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
+```
+
+For JavaScript; 
+```js
+DIC.registry.register(BaseSample, sample);
+
+DIC.registry.resolve(BaseSample);
 ```
 
 ## Using resolver
