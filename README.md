@@ -25,7 +25,14 @@ You can also use it within the browser; install via npm and use the `ComponentRe
 ```html
 <script src="./node_modules/dependencyjs/src/ComponentRegistry.js"></script>
 ```
+For JavaScript; 
+```js
+DIC.registry.register(BaseSample, sample);
 
+DIC.registry.resolve(BaseSample);
+```
+
+Limitations: loading configurations dynamically from other files is not suppoerted on the browser. It must be bundled together (using browserify or webpack).
 ## Usage
 
 You can register base classes with their implementation. Lets take an example of nodejs application
@@ -64,13 +71,6 @@ registry.register<BaseSample>(BaseSample, sample);
 Resolve class object to use it anywhere in code
 ```ts
 let sample: BaseSample= registry.resolve<BaseSample>(BaseSample);
-```
-
-For JavaScript; 
-```js
-DIC.registry.register(BaseSample, sample);
-
-DIC.registry.resolve(BaseSample);
 ```
 
 ## Using resolver
