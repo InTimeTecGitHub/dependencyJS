@@ -1,34 +1,62 @@
-let gulp = require("gulp");
+const {series, dest, parallel} = require("gulp");
 let ts = require("gulp-typescript");
 let tsProject = ts.createProject("tsconfig.json");
-let sourcemaps = require('gulp-sourcemaps');
-let merge = require('merge2');
-let compile = [
-  'index.ts',
-  './src/**/*.ts',
-  './test/**/*.ts',
-  './src/**/*Spec.ts',
-  '!./src/**/trash/**'
-];
+let tsProjectProd = ts.createProject("tsconfig.prod.json");
+var source = require('vinyl-source-stream');
+let browserify = require("browserify");
+var buffer = require("vinyl-buffer");
+var uglify = require("gulp-uglifyes");
 
-gulp.task("tsc", function () {
+function tsc() {
   return tsProject.src()
     .pipe(tsProject())
-    .pipe(gulp.dest('.'));
-});
-gulp.task("ts", function () {
-  let tsResult = gulp.src(compile, {base: '.'})
-    .pipe(sourcemaps.init())
-    .pipe(tsProject())
+    .pipe(dest('.'))
     .once("error", function () {
       this.once("finish", function () {
         process.exit(1);
       });
     });
+}
 
-  return merge([
-    tsResult.dts.pipe(gulp.dest('.')),
-    tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest('.')),
-    tsResult.pipe(sourcemaps.write('.'))
-  ]);
-});
+function tscProd() {
+  return tsProjectProd.src()
+    .pipe(tsProjectProd())
+    .pipe(dest("dist"))
+    .once("error", function () {
+      this.once("finish", function () {
+        process.exit(1);
+      });
+    });
+}
+
+function bundleMin() {
+  return browserify({
+    standalone: "DIC"
+  })
+    .add("index.ts")
+    .plugin("tsify")
+    .bundle()
+    .pipe(source("dependencyjs.min.js"))
+    .pipe(buffer())
+    .pipe(uglify({
+      mangle: {
+        keep_classnames: true,
+        keep_fnames: true,
+      }
+    }))
+    .pipe(dest("dist"));
+}
+
+function bundle() {
+  return browserify({
+    standalone: "DIC"
+  })
+    .add("index.ts")
+    .plugin("tsify")
+    .bundle()
+    .pipe(source("dependencyjs.js"))
+    .pipe(dest("dist"));
+}
+
+exports.build = parallel(tscProd, bundle, bundleMin);
+exports.tsc = tsc;
