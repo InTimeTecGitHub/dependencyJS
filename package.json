@@ -6,8 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "tslint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "node node_modules/nyc/bin/nyc --reporter=text node_modules/mocha/bin/_mocha --require ts-node/register -u tdd --timeout 999999 --colors ./test/**/*Spec.ts ./test/**/**/*Spec.ts",
-    "install": "gulp tsc"
+    "test": "node node_modules/nyc/bin/nyc --reporter=text node_modules/mocha/bin/_mocha --require ts-node/register -u tdd --timeout 999999 --colors ./test/**/*Spec.ts ./test/**/**/*Spec.ts"
   },
   "nyc": {
     "extension": [
