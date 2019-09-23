@@ -43,12 +43,12 @@
     "istanbul": "^0.4.5",
     "merge2": "^1.2.2",
     "mocha": "^5.2.0",
-    "nyc": "^13.3.0",
+    "nyc": "^14.1.1",
     "ts-node": "^7.0.1",
     "tsify": "^4.0.1",
+    "typescript": "^3.1.6",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "typescript": "^3.1.6"
+    "vinyl-source-stream": "^2.0.0"
   },
   "contributors": [
     "InTimeTec vision soft pvt ltd - https://intimetec.com/",
