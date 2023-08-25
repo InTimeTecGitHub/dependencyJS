@@ -1,19 +1,12 @@
 // noinspection ES6UnusedImports
-import mocha = require("mocha");
 var path = require("path");
-import chaiExclude = require("chai-exclude");
 import {expect, use} from "chai";
 import {ComponentRegistry} from "../../src/ComponentRegistry";
 import {registry} from "./../../index";
 import {BaseTestUnit} from "./fixtures/BaseTestUnit";
 import {TestUnitSample} from "./fixtures/TestUnitSample";
-import Test = Mocha.Test;
-import Base = Mocha.reporters.Base;
-import {TestUnitSecondSample} from "./fixtures/TestUnitSecondSample";
 import {BaseComponentTest} from "../Configuration/fixtures/BaseComponentTest";
 import {Config} from "../../src/models/Config";
-
-use(chaiExclude);
 
 let container: ComponentRegistry;
 
