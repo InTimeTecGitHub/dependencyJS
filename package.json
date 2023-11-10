@@ -1,25 +1,11 @@
 {
   "name": "dependencyjs",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "tslint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "node node_modules/nyc/bin/nyc --reporter=text node_modules/mocha/bin/_mocha --require ts-node/register -u tdd --timeout 999999 --colors ./test/**/*Spec.ts ./test/**/**/*Spec.ts"
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts",
-      "**/*.js"
-    ],
-    "reporter": [
-      "html"
-    ],
-    "all": true
+    "tslint": "tslint -p tsconfig.json -c tslint.json"
   },
   "repository": {
     "type": "git",
@@ -43,7 +29,6 @@
     "istanbul": "^0.4.5",
     "merge2": "^1.2.2",
     "mocha": "^10.2.0",
-    "nyc": "^14.1.1",
     "ts-node": "^7.0.1",
     "tsify": "^4.0.1",
     "typescript": "^3.1.6",
