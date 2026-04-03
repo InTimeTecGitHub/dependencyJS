@@ -35,6 +35,12 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
+  "overrides": {
+    "minimatch@^3.0.0": "3.1.5",
+    "minimatch@^5.0.0": "5.1.9",
+    "pbkdf2": "3.1.5",
+    "serialize-javascript": "7.0.5"
+  },
   "contributors": [
     "InTimeTec vision soft pvt ltd - https://intimetec.com/",
     "Manish Kumawat - https://github.com/ManishKumawat",
